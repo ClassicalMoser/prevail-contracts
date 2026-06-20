@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["esnext"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "paths": {
+      "@domain": ["./src/domain"],
+      "@domain/*": ["./src/domain/*"],
+      "@contracts": ["./src/contracts"],
+      "@contracts/*": ["./src/contracts/*"]
+    },
+    "types": ["node", "vitest/globals"],
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "isolatedDeclarations": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/domain/logCommandCard.js"],
+  "exclude": ["node_modules", "dist"]
+}
