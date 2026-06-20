@@ -26,4 +26,4 @@ export type {
 export { makeResponseSchema, emptyObjectSchema, uuidSchema } from '@domain';
 
 // Contract exports
-export { getCommandCardsContract, CONTRACTS } from '@contracts';
+export { CONTRACTS } from '@contracts';
