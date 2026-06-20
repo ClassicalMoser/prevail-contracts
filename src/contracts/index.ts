@@ -1,10 +1,8 @@
-import type { Route } from '@domain';
-import { httpContracts } from './http';
-
+// Individual contract values exports
 export {
   getCurrentCommandCardsContract,
   getCommandCardByIdContract,
 } from './http';
 
-/** All registered HTTP route contracts. */
-export const CONTRACTS: readonly Route[] = [...httpContracts];
+// Full list of registered HTTP route contracts.
+export { httpContracts } from './http';
