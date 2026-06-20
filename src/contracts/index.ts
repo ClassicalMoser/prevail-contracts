@@ -1,1 +1,1 @@
-export const CONTRACTS = [] as const;
+export { getCommandCardsContract } from './http';

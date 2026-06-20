@@ -2,24 +2,31 @@ import type { RouteAuth } from '@domain/auth';
 import type { Response } from '@domain/response';
 import type { z } from 'zod';
 
-interface GetRoute<TParams, TQuery, TResponse> {
+/** Runtime validators for a GET route's inputs and outputs. */
+interface GetRouteValidators<TParams, TQuery, TReturnData> {
+  /** Validates URL path parameters. */
+  params: z.ZodSchema<TParams>;
+  /** Validates query string parameters. */
+  query: z.ZodSchema<TQuery>;
+  /** Validates the success payload (`Response.data`). */
+  returnData: z.ZodSchema<TReturnData>;
+  /** Validates the full response envelope (success or error). */
+  response: z.ZodSchema<Response<TReturnData>>;
+}
+
+/**
+ * Contract for a GET HTTP route.
+ *
+ * Generic parameters are the compile-time shapes handlers and clients use.
+ * {@link GetRouteValidators} must parse values as those same types at runtime.
+ */
+interface GetRoute<TParams, TQuery, TReturnData> {
+  /** Route path, e.g. `/command-cards`. */
   path: string;
+  /** Authentication and authorization requirements. */
   auth: RouteAuth;
   method: 'GET';
-  params: TParams;
-  query: TQuery;
-  response: Response<TResponse>;
+  validators: GetRouteValidators<TParams, TQuery, TReturnData>;
 }
 
-interface GetRouteValidators<TParams, TQuery, TResponse> {
-  params: z.ZodSchema<TParams>;
-  query: z.ZodSchema<TQuery>;
-  response: z.ZodSchema<Response<TResponse>>;
-}
-
-interface GetRouteDefinition<TParams, TQuery, TResponse> {
-  route: GetRoute<TParams, TQuery, TResponse>;
-  validators: GetRouteValidators<TParams, TQuery, TResponse>;
-}
-
-export type { GetRoute, GetRouteDefinition, GetRouteValidators };
+export type { GetRoute, GetRouteValidators };
