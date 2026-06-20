@@ -23,8 +23,7 @@ export type {
   AssertExact,
 } from '@domain';
 
-export { makeResponseSchema, emptyObjectSchema } from '@domain';
+export { makeResponseSchema, emptyObjectSchema, uuidSchema } from '@domain';
 
 // Contract exports
-export { getCommandCards, CONTRACTS } from '@contracts';
-export type { GetCommandCardsReturnData } from '@contracts';
+export { getCommandCardsContract, CONTRACTS } from '@contracts';

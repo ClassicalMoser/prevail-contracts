@@ -1,1 +1,3 @@
-export { getCommandCardsContract } from './command-cards';
+export { getCurrentCommandCardsContract } from './command-cards';
+export { getCommandCardByIdContract } from './command-cards';
+export type { GetCommandCardByIdParams } from './command-cards';

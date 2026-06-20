@@ -28,4 +28,4 @@ export type { EmptyObject } from './schemas';
 export type { AssertExact } from './utils';
 
 export { makeResponseSchema } from './response';
-export { emptyObjectSchema } from './schemas';
+export { emptyObjectSchema, uuidSchema } from './schemas';

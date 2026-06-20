@@ -5,19 +5,22 @@ import { cardSchema } from '@classicalmoser/prevail-rules/domain';
 import { z } from 'zod';
 
 /** Schema for the data returned by the `getCommandCards` route. */
-const getCommandCardsDataSchema = z.array(cardSchema);
+const getCurrentCommandCardsDataSchema = z.array(cardSchema);
 
-/** Returns all command cards in the game. */
-const getCommandCardsContract: GetRoute<EmptyObject, EmptyObject, Card[]> = {
-  path: '/command-cards',
+/** Returns all the command cards that are currently legal to play. */
+const getCurrentCommandCardsContract: GetRoute<
+  EmptyObject,
+  EmptyObject,
+  Card[]
+> = {
+  path: '/command-cards/current',
   auth: { authRequired: false },
   method: 'GET',
   validators: {
     params: emptyObjectSchema,
     query: emptyObjectSchema,
-    returnData: getCommandCardsDataSchema,
-    response: makeResponseSchema(getCommandCardsDataSchema),
+    response: makeResponseSchema(getCurrentCommandCardsDataSchema),
   },
 };
 
-export { getCommandCardsContract };
+export { getCurrentCommandCardsContract };

@@ -6,10 +6,20 @@ import type { PutRoute } from './put-route';
 
 /** Any supported HTTP route contract. */
 type Route =
-  | GetRoute<unknown, unknown, unknown>
-  | PostRoute<unknown, unknown, unknown, unknown>
-  | PutRoute<unknown, unknown, unknown, unknown>
-  | PatchRoute<unknown, unknown, unknown, unknown>
-  | DeleteRoute<unknown, unknown, unknown>;
+  | GetRoute<Record<string, unknown>, Record<string, unknown>, unknown>
+  | PostRoute<
+      Record<string, unknown>,
+      Record<string, unknown>,
+      unknown,
+      unknown
+    >
+  | PutRoute<Record<string, unknown>, Record<string, unknown>, unknown, unknown>
+  | PatchRoute<
+      Record<string, unknown>,
+      Record<string, unknown>,
+      unknown,
+      unknown
+    >
+  | DeleteRoute<Record<string, unknown>, Record<string, unknown>, unknown>;
 
 export type { Route };

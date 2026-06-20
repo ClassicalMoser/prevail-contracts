@@ -13,9 +13,7 @@ type EmptyObjectSchemaType = z.infer<typeof _emptyObjectSchemaObject>;
 export const emptyObjectSchema: z.ZodType<EmptyObject> =
   _emptyObjectSchemaObject;
 
-const _assertExactEmptyObject: AssertExact<
-  EmptyObject,
-  EmptyObjectSchemaType
-> = true;
+const _assertExactEmptyObject: AssertExact<EmptyObject, EmptyObjectSchemaType> =
+  true;
 
 export type { EmptyObject };
