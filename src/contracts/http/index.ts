@@ -6,3 +6,4 @@ export { httpContracts } from './http-contracts';
 export { createEmptyCommandCardContract } from './command-cards';
 export { createCommandCardVersionContract } from './command-cards';
 export { certifyLatestCommandCardVersionsContract } from './command-cards';
+export { previewCommandCardContract } from './command-cards';

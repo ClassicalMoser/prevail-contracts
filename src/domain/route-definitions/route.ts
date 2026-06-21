@@ -1,5 +1,6 @@
 import type { DeleteRoute } from './delete-route';
 import type { GetRoute } from './get-route';
+import type { MediaContentType, MediaPostRoute } from './media-post-route';
 import type { PatchRoute } from './patch-route';
 import type { CreatedPostRoute, PostRoute } from './post-route';
 import type { PutRoute } from './put-route';
@@ -18,6 +19,12 @@ type Route =
       Record<string, unknown>,
       unknown,
       unknown
+    >
+  | MediaPostRoute<
+      Record<string, unknown>,
+      Record<string, unknown>,
+      unknown,
+      MediaContentType
     >
   | PutRoute<Record<string, unknown>, Record<string, unknown>, unknown, unknown>
   | PatchRoute<

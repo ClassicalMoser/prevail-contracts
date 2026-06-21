@@ -4,6 +4,7 @@ import { getCommandCardByIdContract } from './get-command-card-by-id';
 import { createEmptyCommandCardContract } from './create-empty-command-card';
 import { createCommandCardVersionContract } from './create-command-card-version';
 import { certifyLatestCommandCardVersionsContract } from './certify-latest-command-card-versions';
+import { previewCommandCardContract } from './generate-command-card-preview-contract';
 
 const commandCardContracts: readonly Route[] = [
   getCurrentCommandCardsContract,
@@ -11,6 +12,7 @@ const commandCardContracts: readonly Route[] = [
   createEmptyCommandCardContract,
   createCommandCardVersionContract,
   certifyLatestCommandCardVersionsContract,
+  previewCommandCardContract,
 ] as const;
 
 export { commandCardContracts };
