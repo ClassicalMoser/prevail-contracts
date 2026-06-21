@@ -3,21 +3,21 @@ import { emptyObjectSchema, uuidSchema } from '@domain';
 import { z } from 'zod';
 
 /** Shape of the response body of the `certifyLatestCommandCardVersions` route. */
-interface NewCertifications {
+interface CertificationResults {
   succeeded: string[]; // IDs of the latest command card versions that were certified
   failed: string[]; // IDs of the latest command card versions that were not certified
 }
 
-/** Schema for the request body of the `certifyLatestCommandCardVersions` route. */
-const newCertificationsSchema = z.object({
+/** Schema for the response body of the `certifyLatestCommandCardVersions` route. */
+const certificationResultsSchema = z.object({
   succeeded: z.array(uuidSchema),
   failed: z.array(uuidSchema),
 });
 
 // Prevent type drift between the contract and the schema
-type _assertExactNewCertificationsSchema = AssertExact<
-  NewCertifications,
-  z.infer<typeof newCertificationsSchema>
+type _assertExactCertificationResultsSchema = AssertExact<
+  CertificationResults,
+  z.infer<typeof certificationResultsSchema>
 >;
 
 /**
@@ -30,7 +30,7 @@ const certifyLatestCommandCardVersionsContract: CreatedPostRoute<
   EmptyObject,
   EmptyObject,
   EmptyObject,
-  NewCertifications
+  CertificationResults
 > = {
   path: '/command-cards/certify-latest-versions',
   auth: { authRequired: true, permissionsRequired: ['cards:certify'] },
@@ -40,9 +40,9 @@ const certifyLatestCommandCardVersionsContract: CreatedPostRoute<
     params: emptyObjectSchema,
     query: emptyObjectSchema,
     body: emptyObjectSchema,
-    data: newCertificationsSchema,
+    data: certificationResultsSchema,
   },
 };
 
-export type { NewCertifications };
+export type { CertificationResults };
 export { certifyLatestCommandCardVersionsContract };

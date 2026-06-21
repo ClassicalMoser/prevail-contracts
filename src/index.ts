@@ -28,5 +28,8 @@ export { emptyObjectSchema, uuidSchema } from '@domain';
 export {
   getCurrentCommandCardsContract,
   getCommandCardByIdContract,
+  createEmptyCommandCardContract,
+  createCommandCardVersionContract,
+  certifyLatestCommandCardVersionsContract,
 } from '@contracts';
 export { httpContracts } from '@contracts';
