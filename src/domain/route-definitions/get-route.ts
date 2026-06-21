@@ -1,5 +1,4 @@
 import type { RouteAuth } from '@domain/auth';
-import type { Response } from '@domain/response';
 import type { z } from 'zod';
 
 /** Runtime validators for a GET route's inputs and outputs. */
@@ -12,8 +11,8 @@ interface GetRouteValidators<
   params: z.ZodSchema<TParams>;
   /** Validates query string parameters. */
   query: z.ZodSchema<TQuery>;
-  /** Validates the full response envelope (success or error). */
-  response: z.ZodSchema<Response<TReturnData>>;
+  /** Validates the success response body. */
+  data: z.ZodSchema<TReturnData>;
 }
 
 /**

@@ -1,5 +1,4 @@
 import type { RouteAuth } from '@domain/auth';
-import type { Response } from '@domain/response';
 import type { z } from 'zod';
 
 /** Runtime validators for a PUT route's inputs and outputs. */
@@ -15,8 +14,8 @@ interface PutRouteValidators<
   query: z.ZodSchema<TQuery>;
   /** Validates the request body. */
   body: z.ZodSchema<TBody>;
-  /** Validates the full response envelope (success or error). */
-  response: z.ZodSchema<Response<TReturnData>>;
+  /** Validates the success response body. */
+  data: z.ZodSchema<TReturnData>;
 }
 
 /**

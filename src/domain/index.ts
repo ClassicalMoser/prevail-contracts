@@ -14,6 +14,7 @@ export type {
   GetRoute,
   GetRouteValidators,
   PostRoute,
+  CreatedPostRoute,
   PostRouteValidators,
   PutRoute,
   PutRouteValidators,
@@ -23,10 +24,8 @@ export type {
   DeleteRouteValidators,
 } from './route-definitions';
 
-export type { Response, ErrorResponse, SuccessResponse } from './response';
 export type { EmptyObject } from './schemas';
 export type { AssertExact, GetByIdParams } from './utils';
 export { getByIdParamsSchema } from './utils';
 
-export { makeResponseSchema } from './response';
 export { emptyObjectSchema, uuidSchema } from './schemas';
