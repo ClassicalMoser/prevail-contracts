@@ -29,7 +29,16 @@ export type {
 } from './route-definitions';
 
 export type { EmptyObject } from './schemas';
-export type { AssertExact, GetByIdParams } from './utils';
-export { getByIdParamsSchema } from './utils';
+export type {
+  AssertExact,
+  CertificationResults,
+  GetByIdParams,
+  QueryByIdsBody,
+} from './utils';
+export {
+  certificationResultsSchema,
+  getByIdParamsSchema,
+  queryByIdsBodySchema,
+} from './utils';
 
 export { emptyObjectSchema, uuidSchema } from './schemas';

@@ -11,13 +11,13 @@ import { emptyObjectSchema, certificationResultsSchema } from '@domain';
  * and certify all that pass.
  * Returns the IDs of the certified and failed versions.
  */
-const certifyLatestCommandCardVersionsContract: CreatedPostRoute<
+const certifyLatestUnitCardVersionsContract: CreatedPostRoute<
   EmptyObject,
   EmptyObject,
   EmptyObject,
   CertificationResults
 > = {
-  path: '/command-cards/certify-latest-versions',
+  path: '/unit-cards/certify-latest-versions',
   auth: { authRequired: true, permissionsRequired: ['cards:certify'] },
   method: 'POST',
   successStatus: 201,
@@ -29,4 +29,4 @@ const certifyLatestCommandCardVersionsContract: CreatedPostRoute<
   },
 };
 
-export { certifyLatestCommandCardVersionsContract };
+export { certifyLatestUnitCardVersionsContract };

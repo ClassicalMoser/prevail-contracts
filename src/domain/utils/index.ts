@@ -1,3 +1,5 @@
 export type { AssertExact } from './assert-exact';
-export type { GetByIdParams } from './id-params';
-export { getByIdParamsSchema } from './id-params';
+export type { CertificationResults } from './certification-results';
+export type { GetByIdParams, QueryByIdsBody } from './id-params';
+export { certificationResultsSchema } from './certification-results';
+export { getByIdParamsSchema, queryByIdsBodySchema } from './id-params';

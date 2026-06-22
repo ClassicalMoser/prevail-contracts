@@ -21,7 +21,9 @@ export type {
   DeleteRoute,
   DeleteRouteValidators,
   Route,
+  CertificationResults,
   GetByIdParams,
+  QueryByIdsBody,
   EmptyObject,
   AssertExact,
 } from '@domain';
@@ -29,13 +31,20 @@ export type {
 export { emptyObjectSchema, uuidSchema } from '@domain';
 
 // Contract exports
-export type { CertificationResults } from '@contracts';
 export {
   getCurrentCommandCardsContract,
   getCommandCardByIdContract,
+  getCommandCardsByIdsContract,
   createEmptyCommandCardContract,
   createCommandCardVersionContract,
   certifyLatestCommandCardVersionsContract,
   previewCommandCardContract,
+  getCurrentUnitCardsContract,
+  getUnitCardByIdContract,
+  getUnitCardsByIdsContract,
+  createEmptyUnitCardContract,
+  createUnitCardVersionContract,
+  certifyLatestUnitCardVersionsContract,
+  previewUnitCardContract,
 } from '@contracts';
 export { httpContracts } from '@contracts';
