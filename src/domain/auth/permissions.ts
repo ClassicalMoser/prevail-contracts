@@ -1,6 +1,7 @@
 const PERMISSIONS = [
   'cards:create-version',
   'cards:create-card',
+  'cards:delete-card',
   'cards:certify',
   'armies:create-owned-army',
   'armies:update-owned-army',

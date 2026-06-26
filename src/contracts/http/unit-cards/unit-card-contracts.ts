@@ -6,17 +6,21 @@ import {
 } from './get-unit-card-by-id';
 import { createEmptyUnitCardContract } from './create-empty-unit-card';
 import { createUnitCardVersionContract } from './create-unit-card-version';
-import { certifyLatestUnitCardVersionsContract } from './certify-latest-unit-card-versions';
+import { updateUnitCardCertificationsContract } from './update-unit-card-certifications';
 import { previewUnitCardContract } from './generate-unit-card-preview-contract';
+import { getAllUnitCardsContract } from './get-all';
+import { deleteEmptyUnitCardsContract } from './delete-empty-unit-cards-contract';
 
 const unitCardContracts: readonly Route[] = [
+  getAllUnitCardsContract,
   getCurrentUnitCardsContract,
   getUnitCardByIdContract,
   getUnitCardsByIdsContract,
   createEmptyUnitCardContract,
   createUnitCardVersionContract,
-  certifyLatestUnitCardVersionsContract,
+  updateUnitCardCertificationsContract,
   previewUnitCardContract,
+  deleteEmptyUnitCardsContract,
 ] as const;
 
 export { unitCardContracts };

@@ -1,20 +1,22 @@
-// Individual contract values exports
+// Value exports
 export {
-  getCurrentCommandCardsContract,
+  createCommandCardVersionContract,
+  createEmptyCommandCardContract,
+  createEmptyUnitCardContract,
+  createUnitCardVersionContract,
+  deleteEmptyCommandCardsContract,
+  deleteEmptyUnitCardsContract,
+  getAllCommandCardsContract,
+  getAllUnitCardsContract,
   getCommandCardByIdContract,
   getCommandCardsByIdsContract,
-  createEmptyCommandCardContract,
-  createCommandCardVersionContract,
-  certifyLatestCommandCardVersionsContract,
-  previewCommandCardContract,
+  getCurrentCommandCardsContract,
   getCurrentUnitCardsContract,
   getUnitCardByIdContract,
   getUnitCardsByIdsContract,
-  createEmptyUnitCardContract,
-  createUnitCardVersionContract,
-  certifyLatestUnitCardVersionsContract,
+  httpContracts,
+  previewCommandCardContract,
   previewUnitCardContract,
+  updateCommandCardCertificationsContract,
+  updateUnitCardCertificationsContract,
 } from './http';
-
-// Full list of registered HTTP route contracts.
-export { httpContracts } from './http';

@@ -4,16 +4,16 @@ import { z } from 'zod';
 
 /** Result of a bulk certification run over the latest card versions. */
 interface CertificationResults extends Record<string, unknown> {
-  /** IDs of the latest card versions that were certified. */
-  succeeded: string[];
-  /** IDs of the latest card versions that were not certified. */
-  failed: string[];
+  /** IDs of the latest card versions that are certified. */
+  certified: string[];
+  /** IDs of the latest card versions that are not certified. */
+  uncertified: string[];
 }
 
 /** Schema for the response body of certify-latest-versions routes. */
 const certificationResultsSchema: z.ZodSchema<CertificationResults> = z.object({
-  succeeded: z.array(uuidSchema),
-  failed: z.array(uuidSchema),
+  certified: z.array(uuidSchema),
+  uncertified: z.array(uuidSchema),
 });
 
 type _assertExactCertificationResultsSchema = AssertExact<
