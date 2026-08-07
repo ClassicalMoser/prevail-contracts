@@ -15,7 +15,11 @@ import {
 import { z } from 'zod';
 
 /** Returns the current version of a command card by the card's ID. */
-const getCommandCardByIdContract: GetRoute<GetByIdParams, EmptyObject, CommandCard> = {
+const getCommandCardByIdContract: GetRoute<
+  GetByIdParams,
+  EmptyObject,
+  CommandCard
+> = {
   path: '/command-cards/id/:id',
   auth: { authRequired: false },
   method: 'GET',

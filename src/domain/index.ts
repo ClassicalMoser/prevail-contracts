@@ -24,7 +24,7 @@ export type {
   PutRouteValidators,
   Route,
 } from './route-definitions';
-export type { CardListItem, EmptyObject } from './schemas';
+export type { ArmyWriteBody, CardListItem, EmptyObject } from './schemas';
 export type {
   AssertExact,
   CertificationResults,
@@ -34,7 +34,12 @@ export type {
 
 // Value exports
 export { PERMISSIONS, PLAYER_ROLE, SUPER_ADMIN_ROLE } from './auth';
-export { cardListItemSchema, emptyObjectSchema, uuidSchema } from './schemas';
+export {
+  armyWriteBodySchema,
+  cardListItemSchema,
+  emptyObjectSchema,
+  uuidSchema,
+} from './schemas';
 export {
   certificationResultsSchema,
   getByIdParamsSchema,

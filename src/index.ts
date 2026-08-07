@@ -1,5 +1,6 @@
 // Type exports
 export type {
+  ArmyWriteBody,
   AssertExact,
   AuthRequired,
   CardListItem,
@@ -31,6 +32,7 @@ export type {
 
 // Value exports
 export {
+  armyWriteBodySchema,
   cardListItemSchema,
   emptyObjectSchema,
   PERMISSIONS,
@@ -39,9 +41,11 @@ export {
   uuidSchema,
 } from '@domain';
 export {
+  archiveOwnedArmyContract,
   createCommandCardVersionContract,
   createEmptyCommandCardContract,
   createEmptyUnitCardContract,
+  createOwnedArmyContract,
   createUnitCardVersionContract,
   deleteEmptyCommandCardsContract,
   deleteEmptyUnitCardsContract,
@@ -51,11 +55,14 @@ export {
   getCommandCardsByIdsContract,
   getCurrentCommandCardsContract,
   getCurrentUnitCardsContract,
+  getOwnedArmiesContract,
+  getOwnedArmyByIdContract,
   getUnitCardByIdContract,
   getUnitCardsByIdsContract,
   httpContracts,
   previewCommandCardContract,
   previewUnitCardContract,
   updateCommandCardCertificationsContract,
+  updateOwnedArmyContract,
   updateUnitCardCertificationsContract,
 } from '@contracts';

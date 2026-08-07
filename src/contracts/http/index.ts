@@ -1,5 +1,12 @@
 // Value exports
 export {
+  archiveOwnedArmyContract,
+  createOwnedArmyContract,
+  getOwnedArmiesContract,
+  getOwnedArmyByIdContract,
+  updateOwnedArmyContract,
+} from './armies';
+export {
   createCommandCardVersionContract,
   createEmptyCommandCardContract,
   deleteEmptyCommandCardsContract,

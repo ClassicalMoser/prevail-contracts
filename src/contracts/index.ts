@@ -1,8 +1,10 @@
 // Value exports
 export {
+  archiveOwnedArmyContract,
   createCommandCardVersionContract,
   createEmptyCommandCardContract,
   createEmptyUnitCardContract,
+  createOwnedArmyContract,
   createUnitCardVersionContract,
   deleteEmptyCommandCardsContract,
   deleteEmptyUnitCardsContract,
@@ -12,11 +14,14 @@ export {
   getCommandCardsByIdsContract,
   getCurrentCommandCardsContract,
   getCurrentUnitCardsContract,
+  getOwnedArmiesContract,
+  getOwnedArmyByIdContract,
   getUnitCardByIdContract,
   getUnitCardsByIdsContract,
   httpContracts,
   previewCommandCardContract,
   previewUnitCardContract,
   updateCommandCardCertificationsContract,
+  updateOwnedArmyContract,
   updateUnitCardCertificationsContract,
 } from './http';
