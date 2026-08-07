@@ -1,5 +1,5 @@
-import type { Card } from '@classicalmoser/prevail-rules/domain';
-import { cardSchema } from '@classicalmoser/prevail-rules/domain';
+import type { CommandCard } from '@classicalmoser/prevail-rules/domain';
+import { commandCardSchema } from '@classicalmoser/prevail-rules/domain';
 import { emptyObjectSchema } from '@domain';
 import type { CreatedPostRoute, EmptyObject } from '@domain';
 
@@ -11,8 +11,8 @@ import type { CreatedPostRoute, EmptyObject } from '@domain';
 const createCommandCardVersionContract: CreatedPostRoute<
   EmptyObject,
   EmptyObject,
-  Card,
-  Card
+  CommandCard,
+  CommandCard
 > = {
   path: '/command-cards/versions',
   auth: { authRequired: true, permissionsRequired: ['cards:create-version'] },
@@ -21,8 +21,8 @@ const createCommandCardVersionContract: CreatedPostRoute<
   validators: {
     params: emptyObjectSchema,
     query: emptyObjectSchema,
-    body: cardSchema,
-    data: cardSchema,
+    body: commandCardSchema,
+    data: commandCardSchema,
   },
 };
 

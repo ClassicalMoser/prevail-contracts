@@ -1,12 +1,12 @@
-import type { Card } from '@classicalmoser/prevail-rules/domain';
-import { cardSchema } from '@classicalmoser/prevail-rules/domain';
+import type { CommandCard } from '@classicalmoser/prevail-rules/domain';
+import { commandCardSchema } from '@classicalmoser/prevail-rules/domain';
 import type { EmptyObject, MediaPostRoute } from '@domain';
 import { emptyObjectSchema } from '@domain';
 
 const previewCommandCardContract: MediaPostRoute<
   EmptyObject,
   EmptyObject,
-  Card,
+  CommandCard,
   'image/svg+xml'
 > = {
   path: '/command-cards/versions/preview',
@@ -16,7 +16,7 @@ const previewCommandCardContract: MediaPostRoute<
   validators: {
     params: emptyObjectSchema,
     query: emptyObjectSchema,
-    body: cardSchema,
+    body: commandCardSchema,
   },
 };
 

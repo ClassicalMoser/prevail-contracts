@@ -1,5 +1,5 @@
-import type { Card } from '@classicalmoser/prevail-rules/domain';
-import { cardSchema } from '@classicalmoser/prevail-rules/domain';
+import type { CommandCard } from '@classicalmoser/prevail-rules/domain';
+import { commandCardSchema } from '@classicalmoser/prevail-rules/domain';
 import type {
   GetByIdParams,
   EmptyObject,
@@ -15,14 +15,14 @@ import {
 import { z } from 'zod';
 
 /** Returns the current version of a command card by the card's ID. */
-const getCommandCardByIdContract: GetRoute<GetByIdParams, EmptyObject, Card> = {
+const getCommandCardByIdContract: GetRoute<GetByIdParams, EmptyObject, CommandCard> = {
   path: '/command-cards/id/:id',
   auth: { authRequired: false },
   method: 'GET',
   validators: {
     params: getByIdParamsSchema,
     query: emptyObjectSchema,
-    data: cardSchema,
+    data: commandCardSchema,
   },
 };
 
@@ -31,7 +31,7 @@ const getCommandCardsByIdsContract: PostRoute<
   EmptyObject,
   EmptyObject,
   QueryByIdsBody,
-  Card[]
+  CommandCard[]
 > = {
   path: '/command-cards/by-ids',
   auth: { authRequired: false },
@@ -41,7 +41,7 @@ const getCommandCardsByIdsContract: PostRoute<
     params: emptyObjectSchema,
     query: emptyObjectSchema,
     body: queryByIdsBodySchema,
-    data: z.array(cardSchema),
+    data: z.array(commandCardSchema),
   },
 };
 
