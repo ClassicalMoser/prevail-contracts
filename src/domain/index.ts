@@ -40,8 +40,13 @@ export type {
 export type {
   InGameSeatContract,
   InGameSeatContractValidators,
+  InGameSeatOutboundMessage,
+  InGameSeatOutboundOf,
+  InGameSeatOutboundType,
+  InGameSeatOutboundValidators,
   WsContract,
 } from './ws-definitions';
+
 
 // Value exports
 export { PERMISSIONS, PLAYER_ROLE, SUPER_ADMIN_ROLE } from './auth';

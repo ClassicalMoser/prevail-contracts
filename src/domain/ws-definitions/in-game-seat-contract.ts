@@ -1,10 +1,20 @@
 import type { RouteAuth } from '@domain/auth';
 import type { z } from 'zod';
+import type {
+  InGameSeatOutboundMessage,
+  InGameSeatOutboundValidators,
+} from './in-game-seat-outbound';
 
-/** Runtime validators for an in-game seat WebSocket connection. */
+/**
+ * Runtime validators for an in-game seat WebSocket connection.
+ *
+ * Inbound: `playerChoice` only (authoritative shape from the seated client).
+ * Outbound: projected `playerChoice` / `gameEffect`, `roundSnapshot`, `choiceRejected`.
+ */
 interface InGameSeatContractValidators<
   TParams extends Record<string, unknown>,
-  TPlayerChoice,
+  TInboundPlayerChoice,
+  TOutboundPlayerChoice,
   TGameEffect,
   TRoundSnapshot,
   TChoiceRejected,
@@ -12,13 +22,14 @@ interface InGameSeatContractValidators<
   /** Validates connection path parameters. */
   params: z.ZodSchema<TParams>;
   /** Validates player choice events submitted by the seated client. */
-  playerChoice: z.ZodSchema<TPlayerChoice>;
-  /** Validates game effect events streamed to the seated client. */
-  gameEffect: z.ZodSchema<TGameEffect>;
-  /** Validates per-round perspective snapshots sent to the seated client. */
-  roundSnapshot: z.ZodSchema<TRoundSnapshot>;
-  /** Validates choice rejection payloads sent to the seated client. */
-  choiceRejected: z.ZodSchema<TChoiceRejected>;
+  playerChoice: z.ZodSchema<TInboundPlayerChoice>;
+  /** Outbound payload validators (used by clients and server send paths). */
+  outbound: InGameSeatOutboundValidators<
+    TOutboundPlayerChoice,
+    TGameEffect,
+    TRoundSnapshot,
+    TChoiceRejected
+  >;
 }
 
 /**
@@ -30,7 +41,8 @@ interface InGameSeatContractValidators<
 interface InGameSeatContract<
   TSide extends 'white' | 'black',
   TParams extends Record<string, unknown>,
-  TPlayerChoice,
+  TInboundPlayerChoice,
+  TOutboundPlayerChoice,
   TGameEffect,
   TRoundSnapshot,
   TChoiceRejected,
@@ -43,11 +55,35 @@ interface InGameSeatContract<
   auth: RouteAuth;
   validators: InGameSeatContractValidators<
     TParams,
-    TPlayerChoice,
+    TInboundPlayerChoice,
+    TOutboundPlayerChoice,
     TGameEffect,
     TRoundSnapshot,
     TChoiceRejected
   >;
 }
 
-export type { InGameSeatContract, InGameSeatContractValidators };
+/** Convenience alias for outbound messages of a seat contract. */
+type InGameSeatOutboundOf<C> =
+  C extends InGameSeatContract<
+    'white' | 'black',
+    Record<string, unknown>,
+    unknown,
+    infer TOutboundPlayerChoice,
+    infer TGameEffect,
+    infer TRoundSnapshot,
+    infer TChoiceRejected
+  >
+    ? InGameSeatOutboundMessage<
+        TOutboundPlayerChoice,
+        TGameEffect,
+        TRoundSnapshot,
+        TChoiceRejected
+      >
+    : never;
+
+export type {
+  InGameSeatContract,
+  InGameSeatContractValidators,
+  InGameSeatOutboundOf,
+};

@@ -3,21 +3,27 @@ import type {
   GameEffectEvent,
   GameForVisibility,
   PlayerChoiceEvent,
+  ProjectedPlayerChoiceEvent,
 } from '@classicalmoser/prevail-rules/domain';
 import {
   failValidationResultSchema,
   gameEffectEventSchema,
   playerChoiceEventSchema,
+  projectedPlayerChoiceEventSchema,
   whiteSeenGameSchema,
 } from '@classicalmoser/prevail-rules/domain';
 import type { GameWsParams, InGameSeatContract } from '@domain';
 import { gameWsParamsSchema } from '@domain';
 
-/** White-seat in-game WebSocket: submit choices; receive effects + round snapshots. */
+/**
+ * White-seat in-game WebSocket.
+ * Inbound: playerChoice. Outbound: projected events + round snapshots + rejections.
+ */
 const whiteInGameWsContract: InGameSeatContract<
   'white',
   GameWsParams,
   PlayerChoiceEvent,
+  ProjectedPlayerChoiceEvent,
   GameEffectEvent,
   GameForVisibility<'whiteSeen'>,
   FailValidationResult
@@ -31,9 +37,12 @@ const whiteInGameWsContract: InGameSeatContract<
   validators: {
     params: gameWsParamsSchema,
     playerChoice: playerChoiceEventSchema,
-    gameEffect: gameEffectEventSchema,
-    roundSnapshot: whiteSeenGameSchema,
-    choiceRejected: failValidationResultSchema,
+    outbound: {
+      playerChoice: projectedPlayerChoiceEventSchema,
+      gameEffect: gameEffectEventSchema,
+      roundSnapshot: whiteSeenGameSchema,
+      choiceRejected: failValidationResultSchema,
+    },
   },
 };
 

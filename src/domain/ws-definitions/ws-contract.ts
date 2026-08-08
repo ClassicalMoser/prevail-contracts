@@ -8,11 +8,13 @@ type WsContract =
       unknown,
       unknown,
       unknown,
+      unknown,
       unknown
     >
   | InGameSeatContract<
       'black',
       Record<string, unknown>,
+      unknown,
       unknown,
       unknown,
       unknown,
