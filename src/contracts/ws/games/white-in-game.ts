@@ -13,11 +13,12 @@ import {
   whiteSeenGameSchema,
 } from '@classicalmoser/prevail-rules/domain';
 import type { GameWsParams, InGameSeatContract } from '@domain';
-import { gameWsParamsSchema } from '@domain';
+import { emptyObjectSchema, gameWsParamsSchema } from '@domain';
 
 /**
  * White-seat in-game WebSocket.
- * Inbound: playerChoice. Outbound: projected events + round snapshots + rejections.
+ * Inbound: playerChoice, requestGameSnapshot.
+ * Outbound: projected events + current game snapshots + rejections.
  */
 const whiteInGameWsContract: InGameSeatContract<
   'white',
@@ -36,11 +37,14 @@ const whiteInGameWsContract: InGameSeatContract<
   },
   validators: {
     params: gameWsParamsSchema,
-    playerChoice: playerChoiceEventSchema,
+    inbound: {
+      playerChoice: playerChoiceEventSchema,
+      requestGameSnapshot: emptyObjectSchema,
+    },
     outbound: {
       playerChoice: projectedPlayerChoiceEventSchema,
       gameEffect: gameEffectEventSchema,
-      roundSnapshot: whiteSeenGameSchema,
+      gameSnapshot: whiteSeenGameSchema,
       choiceRejected: failValidationResultSchema,
     },
   },

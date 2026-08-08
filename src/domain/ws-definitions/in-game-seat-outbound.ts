@@ -4,37 +4,37 @@ import type { z } from 'zod';
 type InGameSeatOutboundType =
   | 'playerChoice'
   | 'gameEffect'
-  | 'roundSnapshot'
+  | 'gameSnapshot'
   | 'choiceRejected';
 
 /**
  * Outbound envelope for seated clients.
  *
- * Mid-round: projected `playerChoice` / `gameEffect` for local fold.
- * New round: seat-visible `roundSnapshot` for reconcile.
+ * Mid-stream: projected `playerChoice` / `gameEffect` for local fold.
+ * Current state / on `requestGameSnapshot`: seat-visible `gameSnapshot` for reconcile.
  * Rejected submit: `choiceRejected` to the submitter only.
  */
 type InGameSeatOutboundMessage<
   TPlayerChoice,
   TGameEffect,
-  TRoundSnapshot,
+  TGameSnapshot,
   TChoiceRejected,
 > =
   | { type: 'playerChoice'; payload: TPlayerChoice }
   | { type: 'gameEffect'; payload: TGameEffect }
-  | { type: 'roundSnapshot'; payload: TRoundSnapshot }
+  | { type: 'gameSnapshot'; payload: TGameSnapshot }
   | { type: 'choiceRejected'; payload: TChoiceRejected };
 
 /** Zod validators for each outbound envelope variant. */
 interface InGameSeatOutboundValidators<
   TPlayerChoice,
   TGameEffect,
-  TRoundSnapshot,
+  TGameSnapshot,
   TChoiceRejected,
 > {
   playerChoice: z.ZodSchema<TPlayerChoice>;
   gameEffect: z.ZodSchema<TGameEffect>;
-  roundSnapshot: z.ZodSchema<TRoundSnapshot>;
+  gameSnapshot: z.ZodSchema<TGameSnapshot>;
   choiceRejected: z.ZodSchema<TChoiceRejected>;
 }
 

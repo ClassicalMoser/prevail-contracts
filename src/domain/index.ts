@@ -40,6 +40,10 @@ export type {
 export type {
   InGameSeatContract,
   InGameSeatContractValidators,
+  InGameSeatInboundMessage,
+  InGameSeatInboundOf,
+  InGameSeatInboundType,
+  InGameSeatInboundValidators,
   InGameSeatOutboundMessage,
   InGameSeatOutboundOf,
   InGameSeatOutboundType,
