@@ -6,12 +6,16 @@ export type {
   CardListItem,
   CertificationResults,
   CreatedPostRoute,
+  CreateVsBotGameBody,
   DeleteRoute,
   DeleteRouteValidators,
   EmptyObject,
+  GameWsParams,
   GetByIdParams,
   GetRoute,
   GetRouteValidators,
+  InGameSeatContract,
+  InGameSeatContractValidators,
   MediaContentType,
   MediaPayload,
   MediaPostRoute,
@@ -28,13 +32,16 @@ export type {
   Role,
   Route,
   RouteAuth,
+  WsContract,
 } from '@domain';
 
 // Value exports
 export {
   armyWriteBodySchema,
   cardListItemSchema,
+  createVsBotGameBodySchema,
   emptyObjectSchema,
+  gameWsParamsSchema,
   PERMISSIONS,
   PLAYER_ROLE,
   SUPER_ADMIN_ROLE,
@@ -42,13 +49,16 @@ export {
 } from '@domain';
 export {
   archiveOwnedArmyContract,
+  blackInGameWsContract,
   createCommandCardVersionContract,
   createEmptyCommandCardContract,
   createEmptyUnitCardContract,
   createOwnedArmyContract,
   createUnitCardVersionContract,
+  createVsBotGameContract,
   deleteEmptyCommandCardsContract,
   deleteEmptyUnitCardsContract,
+  gameWsContracts,
   getAllCommandCardsContract,
   getAllUnitCardsContract,
   getCommandCardByIdContract,
@@ -65,4 +75,6 @@ export {
   updateCommandCardCertificationsContract,
   updateOwnedArmyContract,
   updateUnitCardCertificationsContract,
+  whiteInGameWsContract,
+  wsContracts,
 } from '@contracts';

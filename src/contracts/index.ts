@@ -6,6 +6,7 @@ export {
   createEmptyUnitCardContract,
   createOwnedArmyContract,
   createUnitCardVersionContract,
+  createVsBotGameContract,
   deleteEmptyCommandCardsContract,
   deleteEmptyUnitCardsContract,
   getAllCommandCardsContract,
@@ -25,3 +26,9 @@ export {
   updateOwnedArmyContract,
   updateUnitCardCertificationsContract,
 } from './http';
+export {
+  blackInGameWsContract,
+  gameWsContracts,
+  whiteInGameWsContract,
+  wsContracts,
+} from './ws';
