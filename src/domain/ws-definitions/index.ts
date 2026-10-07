@@ -15,4 +15,3 @@ export type {
   InGameSeatOutboundValidators,
 } from './in-game-seat-outbound';
 export type { WsContract } from './ws-contract';
-

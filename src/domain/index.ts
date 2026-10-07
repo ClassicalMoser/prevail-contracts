@@ -51,7 +51,6 @@ export type {
   WsContract,
 } from './ws-definitions';
 
-
 // Value exports
 export { PERMISSIONS, PLAYER_ROLE, SUPER_ADMIN_ROLE } from './auth';
 export {

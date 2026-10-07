@@ -1,7 +1,7 @@
 import type { PlayerSide } from '@classicalmoser/prevail-rules/domain';
 import { playerSideSchema } from '@classicalmoser/prevail-rules/domain';
 import type { AssertExact } from '@domain/utils';
-import { uuidSchema } from '@domain/schemas';
+import { uuidSchema } from './uuid';
 import { z } from 'zod';
 
 /** Body for creating a human-vs-bot game (always mini mode). */
@@ -25,7 +25,9 @@ const createVsBotGameBodySchemaObject = z
   })
   .strict();
 
-type CreateVsBotGameBodySchema = z.infer<typeof createVsBotGameBodySchemaObject>;
+type CreateVsBotGameBodySchema = z.infer<
+  typeof createVsBotGameBodySchemaObject
+>;
 
 const _assertExactCreateVsBotGameBody: AssertExact<
   CreateVsBotGameBody,

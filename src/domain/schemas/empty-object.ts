@@ -10,10 +10,10 @@ const _emptyObjectSchemaObject = z.object({});
 type EmptyObjectSchemaType = z.infer<typeof _emptyObjectSchemaObject>;
 
 /** Runtime validator for {@link EmptyObject}. */
-export const emptyObjectSchema: z.ZodType<EmptyObject> =
-  _emptyObjectSchemaObject;
+const emptyObjectSchema: z.ZodType<EmptyObject> = _emptyObjectSchemaObject;
 
 const _assertExactEmptyObject: AssertExact<EmptyObject, EmptyObjectSchemaType> =
   true;
 
+export { emptyObjectSchema };
 export type { EmptyObject };
