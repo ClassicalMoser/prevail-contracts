@@ -9,12 +9,16 @@ import { z } from 'zod';
 
 /**
  * PUT body for an owned army: composition only.
- * Identity is the route `:id`, not a field on the command.
+ * Identity is the route `:id`. Display name is not a client field.
  */
-type ArmyWriteBody = Omit<Army, 'id'>;
+type ArmyWriteBody = Pick<Army, 'units' | 'commandCards'>;
 
-/** Placeholder so we can reuse {@link armySchema} uniqueness refinements. */
+/**
+ * Placeholders so we can reuse {@link armySchema} uniqueness refinements.
+ * Neither field is part of {@link ArmyWriteBody}.
+ */
 const ARMY_ID_PLACEHOLDER = '00000000-0000-4000-8000-000000000000';
+const ARMY_NAME_PLACEHOLDER = 'name-omitted';
 
 const armyWriteBodySchemaObject = z
   .object({
@@ -24,13 +28,14 @@ const armyWriteBodySchemaObject = z
   .superRefine((body, ctx) => {
     const result = armySchema.safeParse({
       id: ARMY_ID_PLACEHOLDER,
+      name: ARMY_NAME_PLACEHOLDER,
       ...body,
     });
     if (result.success) {
       return;
     }
     for (const issue of result.error.issues) {
-      if (issue.path[0] === 'id') {
+      if (issue.path[0] === 'id' || issue.path[0] === 'name') {
         continue;
       }
       ctx.addIssue({
