@@ -8,34 +8,30 @@ import type { AssertExact } from '@domain/utils';
 import { z } from 'zod';
 
 /**
- * PUT body for an owned army: composition only.
- * Identity is the route `:id`. Display name is not a client field.
+ * PUT body for an owned army.
+ * Identity is the route `:id`. The client sends the display name with the composition.
  */
-type ArmyWriteBody = Pick<Army, 'units' | 'commandCards'>;
+type ArmyWriteBody = Omit<Army, 'id'>;
 
-/**
- * Placeholders so we can reuse {@link armySchema} uniqueness refinements.
- * Neither field is part of {@link ArmyWriteBody}.
- */
+/** Placeholder so we can reuse {@link armySchema} uniqueness refinements. */
 const ARMY_ID_PLACEHOLDER = '00000000-0000-4000-8000-000000000000';
-const ARMY_NAME_PLACEHOLDER = 'name-omitted';
 
 const armyWriteBodySchemaObject = z
   .object({
+    name: z.string(),
     units: z.array(unitCountSchema),
     commandCards: z.array(commandCardSchema),
   })
   .superRefine((body, ctx) => {
     const result = armySchema.safeParse({
       id: ARMY_ID_PLACEHOLDER,
-      name: ARMY_NAME_PLACEHOLDER,
       ...body,
     });
     if (result.success) {
       return;
     }
     for (const issue of result.error.issues) {
-      if (issue.path[0] === 'id' || issue.path[0] === 'name') {
+      if (issue.path[0] === 'id') {
         continue;
       }
       ctx.addIssue({

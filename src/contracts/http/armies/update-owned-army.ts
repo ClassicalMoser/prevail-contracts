@@ -11,7 +11,7 @@ import {
 } from '@domain';
 
 /**
- * Replaces an owned army's composition.
+ * Replaces an owned army's name and composition.
  * Identity is path `:id` only. Success body is empty — read via GET.
  */
 const updateOwnedArmyContract: PutRoute<

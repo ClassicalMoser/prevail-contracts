@@ -29,10 +29,11 @@ const commandCard = (id: string): CommandCard => ({
 });
 
 describe('owned army write body', () => {
-  it('accepts composition without id or name', { timeout: 5000 }, () => {
+  it('accepts a named composition without an id', { timeout: 5000 }, () => {
     expect.hasAssertions();
 
     const body = {
+      name: 'First Legion',
       units: [],
       commandCards: [commandCard('22222222-2222-4222-8222-222222222201')],
     };
@@ -40,11 +41,24 @@ describe('owned army write body', () => {
     expect(armyWriteBodySchema.parse(body)).toStrictEqual(body);
   });
 
+  it('rejects a body without a name', { timeout: 5000 }, () => {
+    expect.hasAssertions();
+
+    const result = armyWriteBodySchema.safeParse({
+      units: [],
+      commandCards: [],
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues[0]?.path).toStrictEqual(['name']);
+  });
+
   it('rejects duplicate command cards', { timeout: 5000 }, () => {
     expect.hasAssertions();
 
     const card = commandCard('22222222-2222-4222-8222-222222222201');
     const result = armyWriteBodySchema.safeParse({
+      name: 'First Legion',
       units: [],
       commandCards: [card, card],
     });

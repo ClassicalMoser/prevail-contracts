@@ -4,7 +4,10 @@ import type { EmptyObject, GetRoute } from '@domain';
 import { emptyObjectSchema } from '@domain';
 import { z } from 'zod';
 
-/** Returns all owned armies for the authenticated player. */
+/**
+ * Returns the authenticated player's owned armies.
+ * Archived armies are omitted.
+ */
 const getOwnedArmiesContract: GetRoute<EmptyObject, EmptyObject, Army[]> = {
   path: '/armies',
   auth: { authRequired: true, permissionsRequired: [] },
