@@ -28,5 +28,11 @@ export {
   previewUnitCardContract,
   updateUnitCardCertificationsContract,
 } from './unit-cards';
-export { createVsBotGameContract, gameContracts } from './games';
+export {
+  createBotVsBotGameContract,
+  createVsBotGameContract,
+  gameContracts,
+  getBotVsBotGameContract,
+  stepBotVsBotGameContract,
+} from './games';
 export { httpContracts } from './http-contracts';

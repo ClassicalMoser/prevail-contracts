@@ -26,9 +26,12 @@ export type {
 } from './route-definitions';
 export type {
   ArmyWriteBody,
+  BotVsBotStepData,
   CardListItem,
+  CreateBotVsBotGameBody,
   CreateVsBotGameBody,
   EmptyObject,
+  PlayableGameMode,
 } from './schemas';
 export type {
   AssertExact,
@@ -55,9 +58,12 @@ export type {
 export { PERMISSIONS, PLAYER_ROLE, SUPER_ADMIN_ROLE } from './auth';
 export {
   armyWriteBodySchema,
+  botVsBotStepDataSchema,
   cardListItemSchema,
+  createBotVsBotGameBodySchema,
   createVsBotGameBodySchema,
   emptyObjectSchema,
+  playableGameModeSchema,
   uuidSchema,
 } from './schemas';
 export {

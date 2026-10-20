@@ -1,6 +1,7 @@
 // Value exports
 export {
   archiveOwnedArmyContract,
+  createBotVsBotGameContract,
   createCommandCardVersionContract,
   createEmptyCommandCardContract,
   createEmptyUnitCardContract,
@@ -11,6 +12,7 @@ export {
   deleteEmptyUnitCardsContract,
   getAllCommandCardsContract,
   getAllUnitCardsContract,
+  getBotVsBotGameContract,
   getCommandCardByIdContract,
   getCommandCardsByIdsContract,
   getCurrentCommandCardsContract,
@@ -22,6 +24,7 @@ export {
   httpContracts,
   previewCommandCardContract,
   previewUnitCardContract,
+  stepBotVsBotGameContract,
   updateCommandCardCertificationsContract,
   updateOwnedArmyContract,
   updateUnitCardCertificationsContract,
