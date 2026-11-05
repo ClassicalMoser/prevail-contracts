@@ -10,7 +10,7 @@ import {
   gameEffectEventSchema,
   playerChoiceEventSchema,
   projectedPlayerChoiceEventSchema,
-  whiteSeenGameSchema,
+  legalWhiteSeenGameSchema,
 } from '@classicalmoser/prevail-rules/domain';
 import type { GameWsParams, InGameSeatContract } from '@domain';
 import { emptyObjectSchema, gameWsParamsSchema } from '@domain';
@@ -44,7 +44,7 @@ const whiteInGameWsContract: InGameSeatContract<
     outbound: {
       playerChoice: projectedPlayerChoiceEventSchema,
       gameEffect: gameEffectEventSchema,
-      gameSnapshot: whiteSeenGameSchema,
+      gameSnapshot: legalWhiteSeenGameSchema,
       choiceRejected: failValidationResultSchema,
     },
   },

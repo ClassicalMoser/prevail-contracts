@@ -1,5 +1,5 @@
 import type { GameForVisibility } from '@classicalmoser/prevail-rules/domain';
-import { authoritativeGameSchema } from '@classicalmoser/prevail-rules/domain';
+import { legalAuthoritativeGameSchema } from '@classicalmoser/prevail-rules/domain';
 import type {
   CreateBotVsBotGameBody,
   CreatedPostRoute,
@@ -29,7 +29,7 @@ const createBotVsBotGameContract: CreatedPostRoute<
     params: emptyObjectSchema,
     query: emptyObjectSchema,
     body: createBotVsBotGameBodySchema,
-    data: authoritativeGameSchema,
+    data: legalAuthoritativeGameSchema,
   },
 };
 

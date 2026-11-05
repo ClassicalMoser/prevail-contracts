@@ -6,7 +6,7 @@ import type {
   ProjectedPlayerChoiceEvent,
 } from '@classicalmoser/prevail-rules/domain';
 import {
-  blackSeenGameSchema,
+  legalBlackSeenGameSchema,
   failValidationResultSchema,
   gameEffectEventSchema,
   playerChoiceEventSchema,
@@ -44,7 +44,7 @@ const blackInGameWsContract: InGameSeatContract<
     outbound: {
       playerChoice: projectedPlayerChoiceEventSchema,
       gameEffect: gameEffectEventSchema,
-      gameSnapshot: blackSeenGameSchema,
+      gameSnapshot: legalBlackSeenGameSchema,
       choiceRejected: failValidationResultSchema,
     },
   },

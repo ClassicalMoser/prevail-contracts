@@ -3,7 +3,7 @@ import type {
   PlayerChoiceEvent,
 } from '@classicalmoser/prevail-rules/domain';
 import {
-  authoritativeGameSchema,
+  legalAuthoritativeGameSchema,
   playerChoiceEventSchema,
 } from '@classicalmoser/prevail-rules/domain';
 import type { AssertExact } from '@domain/utils';
@@ -45,21 +45,21 @@ const botVsBotStepDataSchemaObject = z.discriminatedUnion('status', [
     .object({
       status: z.literal('awaitingChoice'),
       choice: playerChoiceEventSchema,
-      game: authoritativeGameSchema,
+      game: legalAuthoritativeGameSchema,
     })
     .strict(),
   z
     .object({
       status: z.literal('gameOver'),
       choice: playerChoiceEventSchema.nullable(),
-      game: authoritativeGameSchema,
+      game: legalAuthoritativeGameSchema,
     })
     .strict(),
   z
     .object({
       status: z.literal('stuck'),
       choice: z.null(),
-      game: authoritativeGameSchema,
+      game: legalAuthoritativeGameSchema,
     })
     .strict(),
 ]);

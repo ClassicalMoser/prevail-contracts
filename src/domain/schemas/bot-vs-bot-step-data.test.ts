@@ -1,4 +1,8 @@
-import { createEmptyGameState } from '@classicalmoser/prevail-rules/domain';
+import {
+  blackMiniStarterArmy,
+  createEmptyGameState,
+  whiteMiniStarterArmy,
+} from '@classicalmoser/prevail-rules/domain';
 import type {
   GameForVisibility,
   PlayerChoiceEvent,
@@ -14,24 +18,15 @@ const choice: PlayerChoiceEvent = {
   player: 'white',
 };
 
+// A mini game each side entered with an army mini allows.
 function authoritativeGame(): GameForVisibility<'authoritative'> {
   return {
-    blackArmy: {
-      id: '33333333-3333-4333-8333-333333333333',
-      name: 'Black',
-      units: [],
-      commandCards: [],
-    },
+    blackArmy: blackMiniStarterArmy,
     blackPlayer: playerId,
     gameMode: 'mini',
     gameState: createEmptyGameState('mini'),
     id: '44444444-4444-4444-8444-444444444444',
-    whiteArmy: {
-      id: '11111111-1111-4111-8111-111111111111',
-      name: 'White',
-      units: [],
-      commandCards: [],
-    },
+    whiteArmy: whiteMiniStarterArmy,
     whitePlayer: playerId,
   };
 }
@@ -100,6 +95,39 @@ describe('bot-vs-bot step data', () => {
     expect(played.success).toBe(false);
     expect(played.error?.issues[0]?.path).toStrictEqual(['choice']);
   });
+
+  it(
+    'rejects a game whose army the mode does not allow',
+    { timeout: 5000 },
+    () => {
+      expect.hasAssertions();
+
+      // White came to a mini game with no units and no cards.
+      const game = {
+        ...authoritativeGame(),
+        whiteArmy: { ...whiteMiniStarterArmy, units: [], commandCards: [] },
+      };
+
+      const result = botVsBotStepDataSchema.safeParse({
+        status: 'stuck',
+        choice: null,
+        game,
+      });
+
+      expect(result.error?.issues).toMatchObject([
+        {
+          message:
+            'Mini armies must have a total morale value of 10 or greater.',
+          path: ['game', 'whiteArmy', 'units'],
+        },
+        {
+          message:
+            'Mini armies must have exactly 2 command cards for each initiative.',
+          path: ['game', 'whiteArmy', 'commandCards'],
+        },
+      ]);
+    },
+  );
 
   it('rejects an unknown status', { timeout: 5000 }, () => {
     expect.hasAssertions();

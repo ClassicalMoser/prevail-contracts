@@ -1,5 +1,5 @@
 import type { GameForVisibility } from '@classicalmoser/prevail-rules/domain';
-import { authoritativeGameSchema } from '@classicalmoser/prevail-rules/domain';
+import { legalAuthoritativeGameSchema } from '@classicalmoser/prevail-rules/domain';
 import type { EmptyObject, GameWsParams, GetRoute } from '@domain';
 import { emptyObjectSchema, gameWsParamsSchema } from '@domain';
 
@@ -23,7 +23,7 @@ const getBotVsBotGameContract: GetRoute<
   validators: {
     params: gameWsParamsSchema,
     query: emptyObjectSchema,
-    data: authoritativeGameSchema,
+    data: legalAuthoritativeGameSchema,
   },
 };
 
