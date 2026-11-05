@@ -1,4 +1,5 @@
 import type { CommandCard } from '@classicalmoser/prevail-rules/domain';
+import { tempUnits } from '@classicalmoser/prevail-rules/domain';
 import { armyWriteBodySchema } from './army-write-body';
 
 const commandCard = (id: string): CommandCard => ({
@@ -66,4 +67,29 @@ describe('owned army write body', () => {
     expect(result.success).toBe(false);
     expect(result.error?.issues[0]?.path).toStrictEqual(['commandCards', 1]);
   });
+
+  it(
+    'rejects more of a unit type than its limit allows',
+    { timeout: 5000 },
+    () => {
+      expect.hasAssertions();
+      // African Elephants may be fielded at most twice; this asks for three.
+      const elephants = tempUnits.find(
+        (unitType) => unitType.name === 'African Elephants',
+      );
+
+      const result = armyWriteBodySchema.safeParse({
+        name: 'First Legion',
+        units: [{ count: 3, unitType: elephants }],
+        commandCards: [],
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error?.issues[0]?.path).toStrictEqual([
+        'units',
+        0,
+        'count',
+      ]);
+    },
+  );
 });
