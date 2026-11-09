@@ -1,8 +1,8 @@
+import { createEmptyGameState } from '@classicalmoser/prevail-rules/domain';
 import {
   blackMiniStarterArmy,
-  createEmptyGameState,
   whiteMiniStarterArmy,
-} from '@classicalmoser/prevail-rules/domain';
+} from '@classicalmoser/prevail-rules/sampleValues';
 import type {
   GameForVisibility,
   PlayerChoiceEvent,

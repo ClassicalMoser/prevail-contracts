@@ -1,5 +1,5 @@
 import type { CommandCard } from '@classicalmoser/prevail-rules/domain';
-import { tempUnits } from '@classicalmoser/prevail-rules/domain';
+import { tempUnits } from '@classicalmoser/prevail-rules/sampleValues';
 import { armyWriteBodySchema } from './army-write-body';
 
 const commandCard = (id: string): CommandCard => ({
